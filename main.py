@@ -22,7 +22,7 @@ def string_without_comma(string):
 
 boulevard_sentences = get_sentence('BLDVR_DEPO_TEXT.txt')
 
-bot = telebot.TeleBot(config.token)
+bot = telebot.TeleBot(TOKEN)
 
 
 @bot.message_handler(commands=['start', 'help'])

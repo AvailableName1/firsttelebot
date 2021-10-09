@@ -20,9 +20,13 @@ def string_without_comma(string):
         return string[:len(string)-2]
 
 
+with open('token_file.txt', 'r', encoding='utf-8') as token_file:
+    bot_token = token_file.readline()
+
+print(bot_token)
 boulevard_sentences = get_sentence('BLDVR_DEPO_TEXT.txt')
 
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(bot_token)
 
 
 @bot.message_handler(commands=['start', 'help'])

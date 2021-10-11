@@ -29,6 +29,11 @@ boulevard_sentences = get_sentence('BLDVR_DEPO_TEXT.txt')
 bot = telebot.TeleBot(bot_token)
 
 
+@bot.message_handler(content_types=["audio, document, photo, sticker, video, video_note, voice"])
+def do_not_understand_this(message):
+    bot.send_message(message.chat.id, "Unfortunately, I can't reply to this type of message")
+
+
 @bot.message_handler(commands=['start', 'help'])
 def welcome_message(message):
     bot.send_message(message.chat.id, "Hi! I will send you some random quote, if you command /send")
@@ -47,11 +52,6 @@ def query_of_quote(message):
         bot.send_message(message.chat.id, string_without_comma(random_sentence(response)))
     else:
         bot.send_message(message.chat.id, 'There are no matches with your word in my book')
-
-
-@bot.message_handler(content_types=["audio, document, photo, sticker, video, video_note, voice"])
-def repeat_all_messages(message):
-    bot.send_message(message.chat.id, "Unfortunately, I can't reply to this type of message")
 
 
 bot.polling(none_stop=True)
